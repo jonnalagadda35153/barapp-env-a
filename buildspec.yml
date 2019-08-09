@@ -12,11 +12,11 @@ phases:
       - apt-get update -y
       - apt-get install software-properties-common
       - apt-get update
-      - apt-get install default-jdk
-      - apt-get install default-jre
+      - apt-get install default-jdk -y
+      - apt-get install default-jre -y
       - java -version
       - apt-get update -y
-      - apt-get install maven
+      - apt-get install maven -y
       - mvn -version
       
   pre_build:
