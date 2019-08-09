@@ -16,7 +16,7 @@ phases:
       - apt-get install default-jre -y
       - java -version
       - apt-get update -y
-      - apt-get install maven -y
+      - apt-get install maven 2.5 -y
       - mvn -version
       
   pre_build:
