@@ -9,12 +9,15 @@ phases:
       - export PATH=$PWD/:$PATH
       - apt-get update && apt-get -y install jq python3-pip python3-dev && pip3 install --upgrade awscli
       - echo installing maven...
+      - mvn -version
       - apt-get update -y
       - apt-get install software-properties-common
-      - add-apt-repository ppa:openjdk-r/ppa
       - apt-get update
-      - apt-get install -y openjdk-7-jdk
-      - apt-get install -y maven
+      - apt-get install default-jdk
+      - apt-get install default-jre
+      - java -version
+      - apt-get update -y
+      - apt-get install maven
       
   pre_build:
       commands:
