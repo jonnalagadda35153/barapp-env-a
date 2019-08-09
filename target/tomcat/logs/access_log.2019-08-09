@@ -1,0 +1,3 @@
+0:0:0:0:0:0:0:1 - - [09/Aug/2019:12:53:37 -0400] "GET /LiquorStoreApp HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [09/Aug/2019:12:53:37 -0400] "GET /LiquorStoreApp/ HTTP/1.1" 200 532 http-bio-8080-exec-3 20
+0:0:0:0:0:0:0:1 - - [09/Aug/2019:12:54:40 -0400] "GET / HTTP/1.1" 404 - http-bio-8080-exec-5 0
