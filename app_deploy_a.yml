@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-a-svc
+  namespace: env-a
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
+    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+    service.beta.kubernetes.io/aws-load-balancer-connection-draining-enabled: "true"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:us-east-1:682651395775:certificate/ebeac7f9-8167-4680-9f72-0a23a67eec99"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+    service.beta.kubernetes.io/aws-load-balancer-connection-draining-timeout: "60"
+    service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: "environment=dev,app=app"
+spec:
+  selector:
+    app: appa
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+    protocol: TCP
+  - name: https
+    port: 443
+    protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appa
+  labels:
+    app: appa
+  namespace: env-a
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: appa
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: appa
+    spec:
+      containers:
+        - image: 682651395775.dkr.ecr.us-east-1.amazonaws.com/env-a
+        #- image: 682651395775.dkr.ecr.us-east-1.amazonaws.com/eks-a-ecrdo-mh3scnb0b43r:app2.master..2019-04-19.16.21.39.258f264e
+          imagePullPolicy: Always
+          name: appa
+          ports:
+            - containerPort: 8080
+
+
+
