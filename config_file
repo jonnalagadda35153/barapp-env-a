@@ -1,0 +1,31 @@
+apiVersion: v1
+clusters:
+- cluster:
+    server: https://8FC153B145F8BB0A54C7DFF04B8A9FC2.sk1.us-east-1.eks.amazonaws.com
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1EUXhOakU1TlRreU5Wb1hEVEk1TURReE16RTVOVGt5TlZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTi9SCkU3aFpLVUFDakNhZklBcHZQczlhN0tZbU92QTA3bjFkWTlySW1OVEpsdnMrNDgwb2RDNjhMMStibTlUNFNibWYKSVByb1NINE42OXlZVkg2bDhBdXdFd250cmNzcy9jWWNoNU9PQ0crbVFSWlUvQVV4RitHV0g2UFJ6MmNobnJkegpQbmRkQWcwZUNuSmE2eEpySk0zbENrN1d5enVEQ1hqdTh5MXBYYUtWNENydDZLUGg1UEZEM2o5UGpTT0o0TFozCnJNeG80U3V3ckJXa2VsZjlBSHFDNXNOaTlBeXhSQnpRNlZ1dUZsU096U1l5Y1lNYzBQMG9TRHY0RUZtWmJCYWgKUHlDOUkrbjlJVzJDR0IraXp6L04ydU1rU2hkQjYrVmtRa29ydUJvMGl6NGtLU3JsVktab2F6RHZzZi9UQVg1dwowWTlaNm13c3ZZRnlyOVJGcEkwQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFFcXBSUDd0UWp6SGxOKzN0Q2JiRVBUSlg5MjYKWlZhNTJseElNSmVUaEkxMGlVZlFEVlBZcVBkWURIZDZKZWJLZnJGL0FSTENERjYrSG5FRElaTGVtVmY5Q1BJNQpyTkI5WHBHbTZWUjYrOXFvSUdZVVNxLzR3TExOWmUwZUJ2em1sT0l2bzV3ME40Z3M3NE4xVHlxVjhYR2tMY0RhClBHb0t1cVR0b2YzOEFlTE1WclJTdTk5dG1XRDQySVBjS1B6bjh1eFFpNTZvdHIwemVqd0svNStXbzVTamZJSmcKQmV3UzcrY3o1VnJaRXNicEhrZGdHOGViUmZpUnl1S29nVlgyc1plb0VUbkV6M1FGOVJlazdwL1RCTjFGOUJxSwpOSUlrcWdzNkE1bUhpQUwvVGptQ2JKQXVUbVlTeEFaUDJrczR4Mm9QbjR5T1MybmFoc3JJOXZjem9CND0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    user: aws
+  name: aws
+current-context: aws
+kind: Config
+preferences: {}
+users:
+- name: aws
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1alpha1
+      command: aws-iam-authenticator
+      args:
+        - "token"
+        - "-i"
+        - "aw-ekstestcluster-pubpri"
+        #- "-r"
+        #- "arn:aws:iam::682651395775:role/env-a-role"
+        #- "r"
+        #- "arn:aws:iam::682651395775:role/env-b-role"
+      # env:
+        # - name: AWS_PROFILE
+        #   value: "<aws-profile>"
